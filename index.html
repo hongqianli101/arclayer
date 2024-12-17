@@ -37,11 +37,22 @@
       const map = new mapboxgl.Map({
         container: "map",
         style: "mapbox://styles/hongqianli/cm4s3p1oh00g601s5bkknfl6l",
-        center: [-74.006, 40.8028],
-        zoom: 11.2,
+        center: [-73.97, 40.7528],
+        zoom: 11.4,
         pitch: 60,
         bearing: -30, 
       });
+
+      // let bearing = -30; // Initial map rotation
+      // let rotationSpeed = 0.1; // Rotation speed (adjust as needed)
+
+      // // Function to rotate the map continuously
+      // function rotateMap() {
+      //   bearing = (bearing + rotationSpeed) % 360; // Keep bearing between 0-360
+      //   map.setBearing(bearing);
+      //   requestAnimationFrame(rotateMap); // Animate continuously
+      // }
+
 
       
 
@@ -68,6 +79,7 @@
       map.on("load", () => {
         console.log("Map style loaded successfully.");
         map.setFog(null);
+        // rotateMap(); 
 
         // Load data for the ScatterplotLayer from image_data.json
         axios
