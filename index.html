@@ -53,14 +53,6 @@
           map.removeLayer(layer.id);
         }
       });
-      if (map.getLayer("land")) {
-    // Set the 'land' layer background or fill color to black
-    map.setPaintProperty("land", "background-color", "#000000"); // For background layer
-    map.setPaintProperty("land", "fill-color", "#000000"); // For fill layers
-    console.log("Land layer color set to black.");
-  } else {
-    console.warn("Land layer not found in this style.");
-  }
     });
 
       // 生成随机颜色的函数
