@@ -34,14 +34,30 @@
         "pk.eyJ1IjoiaG9uZ3FpYW5saSIsImEiOiJjbGticW84cjIwaGRjM2xvNjNrMjh4cmRyIn0.o65hBMiuqrCXY-3-bxGsUg";
 
       // 初始化 Mapbox 地图
-      const map = new mapboxgl.Map({
-        container: "map",
-        style: "mapbox://styles/hongqianli/cm4s3p1oh00g601s5bkknfl6l",
-        center: [-74.14, 40.79],
-        zoom: 10.95,
-        pitch: 76,
-        bearing: -30, 
-      });
+      const viewOptions = [
+  {
+    center: [-74.14, 40.79],
+    pitch: 76,
+    bearing: -30,
+  },
+  {
+    center: [-74.06, 40.78],
+    pitch: 0,
+    bearing: 0,
+  },
+];
+
+// 随机选一个配置
+const randomView = viewOptions[Math.floor(Math.random() * viewOptions.length)];
+
+const map = new mapboxgl.Map({
+  container: "map",
+  style: "mapbox://styles/hongqianli/cm4s3p1oh00g601s5bkknfl6l",
+  center: randomView.center,
+  zoom: 10.95,
+  pitch: randomView.pitch,
+  bearing: randomView.bearing,
+});
 
       // let bearing = -30; // Initial map rotation
       // let rotationSpeed = 0.1; // Rotation speed (adjust as needed)
