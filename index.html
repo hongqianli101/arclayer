@@ -61,10 +61,6 @@
       // }
 
 
-      
-
-      
-
       map.on("style.load", () => {
       map.getStyle().layers.forEach((layer) => {
         if (layer.type === "symbol") {
@@ -129,7 +125,7 @@
     return [r, g, b];
 }
 
-            // 将十六进制颜色转换为 RGB 格式的函数
+    // 将十六进制颜色转换为 RGB 格式的函数
 function hexToRgb(hex) {
   const bigint = parseInt(hex.slice(1), 16);
   return [(bigint >> 16) & 255, (bigint >> 8) & 255, bigint & 255];
@@ -157,11 +153,11 @@ const arcLayer = new MapboxLayer({
   getWidth: 0.5,
   getSourceColor: (d) => {
     const combo = getRandomColorCombo();
-    return [...combo.source, 60]; // 加入透明度，100/255 ≈ 39%
+    return [...combo.source, 150]; 
   },
   getTargetColor: (d) => {
     const combo = getRandomColorCombo();
-    return [...combo.target, 60];
+    return [...combo.target, 150];
   },
 });
 
