@@ -126,20 +126,23 @@
 }
 
 let isUserInteracting = false;
+let baseBearing = selectedView.bearing;
+let basePitch = selectedView.pitch;
 
-// 用户按下鼠标，进入自主交互模式
 map.on('mousedown', () => {
   isUserInteracting = true;
 });
 
-// 用户松开鼠标，退出交互模式
 map.on('mouseup', () => {
   isUserInteracting = false;
+
+  // Update the base angle to current map view
+  baseBearing = map.getBearing();
+  basePitch = map.getPitch();
 });
 
-// 鼠标移动触发视差动效，但只在非拖动状态下生效
 document.addEventListener("mousemove", function (e) {
-  if (isUserInteracting) return; // 如果用户正在交互，就不干预
+  if (isUserInteracting) return;
 
   const centerX = window.innerWidth / 2;
   const centerY = window.innerHeight / 2;
@@ -147,8 +150,8 @@ document.addEventListener("mousemove", function (e) {
   const moveX = (e.clientX - centerX) / centerX;
   const moveY = (e.clientY - centerY) / centerY;
 
-  const bearing = selectedView.bearing + moveX * 10;
-  const pitch = selectedView.pitch + moveY * 10;
+  const bearing = baseBearing + moveX * 10;
+  const pitch = basePitch + moveY * 10;
   const clampedPitch = Math.max(0, Math.min(80, pitch));
 
   map.setBearing(bearing);
